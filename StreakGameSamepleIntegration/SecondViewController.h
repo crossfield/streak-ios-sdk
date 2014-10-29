@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SecondViewController : UIViewController
+@interface SecondViewController : UIViewController <UIWebViewDelegate>
 
+- (void)navigateTo:(NSURL*)url;
 
 @end
 

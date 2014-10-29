@@ -15,6 +15,9 @@
 		4E6F7CD019F6B69E00EF1D0F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E6F7CCF19F6B69E00EF1D0F /* Images.xcassets */; };
 		4E6F7CD319F6B69E00EF1D0F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E6F7CD119F6B69E00EF1D0F /* LaunchScreen.xib */; };
 		4E6F7CDF19F6B69E00EF1D0F /* StreakGameSamepleIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6F7CDE19F6B69E00EF1D0F /* StreakGameSamepleIntegrationTests.m */; };
+		4E837B7C19FED13F0042A77F /* ajax-loader.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4E837B7A19FED13F0042A77F /* ajax-loader.gif */; };
+		4E837B7D19FED13F0042A77F /* loading.html in Resources */ = {isa = PBXBuildFile; fileRef = 4E837B7B19FED13F0042A77F /* loading.html */; };
+		4E837B7F19FED91C0042A77F /* error.html in Resources */ = {isa = PBXBuildFile; fileRef = 4E837B7E19FED91C0042A77F /* error.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +46,9 @@
 		4E6F7CD819F6B69E00EF1D0F /* StreakGameSamepleIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StreakGameSamepleIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E6F7CDD19F6B69E00EF1D0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E6F7CDE19F6B69E00EF1D0F /* StreakGameSamepleIntegrationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StreakGameSamepleIntegrationTests.m; sourceTree = "<group>"; };
+		4E837B7A19FED13F0042A77F /* ajax-loader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "ajax-loader.gif"; sourceTree = "<group>"; };
+		4E837B7B19FED13F0042A77F /* loading.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = loading.html; sourceTree = "<group>"; };
+		4E837B7E19FED91C0042A77F /* error.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = error.html; path = StreakGameSamepleIntegration/streak/error.html; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +90,7 @@
 		4E6F7CBE19F6B69E00EF1D0F /* StreakGameSamepleIntegration */ = {
 			isa = PBXGroup;
 			children = (
+				4E837B7919FED13F0042A77F /* streak */,
 				4E6F7CC319F6B69E00EF1D0F /* AppDelegate.h */,
 				4E6F7CC419F6B69E00EF1D0F /* AppDelegate.m */,
 				4E6F7CC619F6B69E00EF1D0F /* FirstViewController.h */,
@@ -123,6 +130,17 @@
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
+		};
+		4E837B7919FED13F0042A77F /* streak */ = {
+			isa = PBXGroup;
+			children = (
+				4E837B7E19FED91C0042A77F /* error.html */,
+				4E837B7A19FED13F0042A77F /* ajax-loader.gif */,
+				4E837B7B19FED13F0042A77F /* loading.html */,
+			);
+			name = streak;
+			path = "/Users/mathieu/Library/Developer/Xcode/DerivedData/StreakGameSamepleIntegration-aeamdlgybuqtjtdmqpmxgztatibu/Build/Products/Debug-iphoneos/../../../../../../../../preplay/StreakGameSamepleIntegration/StreakGameSamepleIntegration/streak";
+			sourceTree = "<absolute>";
 		};
 /* End PBXGroup section */
 
@@ -173,6 +191,7 @@
 				TargetAttributes = {
 					4E6F7CBB19F6B69E00EF1D0F = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 6Z5D4G5GNN;
 					};
 					4E6F7CD719F6B69E00EF1D0F = {
 						CreatedOnToolsVersion = 6.1;
@@ -207,6 +226,9 @@
 				4E6F7CCE19F6B69E00EF1D0F /* Main.storyboard in Resources */,
 				4E6F7CD319F6B69E00EF1D0F /* LaunchScreen.xib in Resources */,
 				4E6F7CD019F6B69E00EF1D0F /* Images.xcassets in Resources */,
+				4E837B7F19FED91C0042A77F /* error.html in Resources */,
+				4E837B7D19FED13F0042A77F /* loading.html in Resources */,
+				4E837B7C19FED13F0042A77F /* ajax-loader.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,6 +442,7 @@
 				4E6F7CE419F6B69E00EF1D0F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4E6F7CE519F6B69E00EF1D0F /* Build configuration list for PBXNativeTarget "StreakGameSamepleIntegrationTests" */ = {
 			isa = XCConfigurationList;
@@ -428,6 +451,7 @@
 				4E6F7CE719F6B69E00EF1D0F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

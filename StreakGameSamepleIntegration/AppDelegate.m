@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "SecondViewController.h"
 
 @interface AppDelegate ()
 
@@ -40,6 +41,19 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+
+-(BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+ sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    NSLog(@"ns=AppDelegate fn=openURL url=%@", [url description]);
+    if ([@"streak-darts" isEqualToString:[url scheme]]) {
+        UITabBarController *tabBar = (UITabBarController *)self.window.rootViewController;
+        SecondViewController *streakController = (SecondViewController *)[[tabBar viewControllers] objectAtIndex:1];
+        [streakController  navigateTo:url];
+        [tabBar setSelectedIndex:1];
+    }
+    return true;
 }
 
 @end
