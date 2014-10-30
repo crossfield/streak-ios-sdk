@@ -133,8 +133,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         for (NSString *param in [request.URL.query componentsSeparatedByString:@"&"]) {
             NSArray *elts = [param componentsSeparatedByString:@"="];
             if([elts count] < 2) continue;
-            NSString *name = [elts objectAtIndex:0];
-            NSString *value = [elts objectAtIndex:1];
+            NSString *name = elts[0];
+            NSString *value = elts[1];
             value = [value stringByReplacingOccurrencesOfString:@"+" withString:@" "];
             value = [value stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             [params setObject:value forKey: name];
