@@ -10,7 +10,7 @@
 
 @interface SecondViewController : UIViewController <UIWebViewDelegate>
 
-- (void)navigateTo:(NSURL*)url;
+- (void)navigateToURL:(NSURL*)url;
 
 @end
 

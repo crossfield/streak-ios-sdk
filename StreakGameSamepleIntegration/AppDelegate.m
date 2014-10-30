@@ -50,7 +50,7 @@
     if ([@"streak-darts" isEqualToString:[url scheme]]) {
         UITabBarController *tabBar = (UITabBarController *)self.window.rootViewController;
         SecondViewController *streakController = (SecondViewController *)[[tabBar viewControllers] objectAtIndex:1];
-        [streakController  navigateTo:url];
+        [streakController navigateToURL:url];
         [tabBar setSelectedIndex:1];
     }
     return true;

@@ -16,7 +16,7 @@ static NSString* const kStagingHost = @"darts.streakit-staging.preplaysports.com
 @interface SecondViewController ()
 
 @property(nonatomic, strong) UIWebView *webview;
-@property(nonatomic, strong) NSURL *nextUrlToLoad;
+@property(nonatomic, strong) NSURL *nextURLToLoad;
 @property(nonatomic) BOOL initialLoad;
 
 @end
@@ -40,7 +40,7 @@ static NSString* const kStagingHost = @"darts.streakit-staging.preplaysports.com
     [self.view addSubview:webview];
 }
 
-- (NSString*)staticHtmlForScreen:(NSString *) path {
+- (NSString*)staticHTMLForScreen:(NSString *) path {
     NSString *file = [[NSBundle bundleForClass:self.class] pathForResource:path ofType:@"html"];
     NSError *error = nil;
     NSString *html = [NSString stringWithContentsOfFile:file usedEncoding:nil error:&error];
@@ -51,7 +51,7 @@ static NSString* const kStagingHost = @"darts.streakit-staging.preplaysports.com
 }
 
 - (void)showLocalContent:(NSString *) path {
-    NSString* html = [self staticHtmlForScreen:path];
+    NSString* html = [self staticHTMLForScreen:path];
     if (html) {
         [self.webview loadHTMLString:html baseURL:[NSURL URLWithString:@"http://localhost/"]];
     }
@@ -59,7 +59,7 @@ static NSString* const kStagingHost = @"darts.streakit-staging.preplaysports.com
 
 
 - (void)navigateToStreakapp:(NSURL *)url {
-    NSURL *requested = url ?: self.nextUrlToLoad;
+    NSURL *requested = url ?: self.nextURLToLoad;
     NSURL *resolved;
     
     if ([[requested scheme] isEqualToString:(NSString*)kURLScheme]) {
@@ -74,7 +74,7 @@ static NSString* const kStagingHost = @"darts.streakit-staging.preplaysports.com
         resolved = [[NSURL alloc] initWithScheme:@"http" host:kHost path:@"/"];
     }
     
-    NSLog(@"fn=navigateToStreakapp(%@) nextUrlToLoad=%@ resolved=%@", url, [self.nextUrlToLoad absoluteString], [resolved absoluteString]);
+    NSLog(@"fn=navigateToStreakapp(%@) nextURLToLoad=%@ resolved=%@", url, [self.nextURLToLoad absoluteString], [resolved absoluteString]);
 
     
     NSMutableURLRequest *req = [[NSMutableURLRequest alloc] initWithURL:resolved];
@@ -86,24 +86,23 @@ static NSString* const kStagingHost = @"darts.streakit-staging.preplaysports.com
     NSString *platform = [[UIDevice currentDevice].systemName stringByAppendingString:[UIDevice currentDevice].systemVersion];
     [req setValue:platform  forHTTPHeaderField:@"X-Streak-Platform"];
 
-    self.nextUrlToLoad = nil;
+    self.nextURLToLoad = nil;
     [self.webview loadRequest:req];
 }
 
-- (void)navigateTo:(NSURL*)url {
-    NSLog(@"fn=navigateTo url=%@", url);
+- (void)navigateToURL:(NSURL*)url {
+    NSLog(@"fn=navigateToURL url=%@", url);
     if (self.isViewLoaded) {
         [self navigateToStreakapp:url];
     }
     else {
-        self.nextUrlToLoad = url;
+        self.nextURLToLoad = url;
     }
 }
 
 
-- (void)shareWithUrl:(NSString *)url andCopy:(NSString *)copy {
-    NSURL *typedUrl = [NSURL URLWithString:url];
-    NSArray *sharingItems = @[typedUrl, copy];
+- (void)shareWithURL:(NSURL *)url andCopy:(NSString *)copy {
+    NSArray *sharingItems = @[url, copy];
 
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:sharingItems applicationActivities:nil];
     activityController.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePrint, UIActivityTypeMail, UIActivityTypeMessage,
@@ -133,7 +132,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         }
 
         if ([@"share" isEqualToString:action]) {
-            [self shareWithUrl:params[@"url"] andCopy:params[@"copy"]];
+            NSURL *url = [NSURL URLWithString:params[@"url"]];
+            [self shareWithURL:url andCopy:params[@"copy"]];
         }
         
         return false;
