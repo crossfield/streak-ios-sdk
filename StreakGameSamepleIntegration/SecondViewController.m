@@ -35,7 +35,7 @@ static NSString* const kStagingHost = @"darts.streakit-staging.preplaysports.com
 - (void)setupWebView {
     UIWebView *webview = [[UIWebView alloc] initWithFrame:self.view.bounds];
     webview.delegate = self;
-    [webview setAutoresizingMask:UIViewAutoresizingFlexibleHeight |UIViewAutoresizingFlexibleWidth];
+    webview.autoresizingMask = UIViewAutoresizingFlexibleHeight |UIViewAutoresizingFlexibleWidth;
     self.webview = webview;
     [self.view addSubview:webview];
 }
@@ -62,9 +62,9 @@ static NSString* const kStagingHost = @"darts.streakit-staging.preplaysports.com
     NSURL *requested = url ?: self.nextURLToLoad;
     NSURL *resolved;
     
-    if ([[requested scheme] isEqualToString:kURLScheme]) {
+    if ([requested.scheme isEqualToString:kURLScheme]) {
         NSString *curHost = [requested.host isEqualToString:@"staging"] ? kStagingHost : kHost;
-        NSString *path = [requested path];
+        NSString *path = requested.path;
         if ([requested.path isEqualToString:@""] && ![requested.host isEqualToString:@"staging"]) {
             path = [@"/" stringByAppendingString:requested.host];
         }
@@ -74,7 +74,7 @@ static NSString* const kStagingHost = @"darts.streakit-staging.preplaysports.com
         resolved = [[NSURL alloc] initWithScheme:@"http" host:kHost path:@"/"];
     }
     
-    NSLog(@"fn=navigateToStreakapp(%@) nextURLToLoad=%@ resolved=%@", url, [self.nextURLToLoad absoluteString], [resolved absoluteString]);
+    NSLog(@"fn=navigateToStreakapp(%@) nextURLToLoad=%@ resolved=%@", url, self.nextURLToLoad.absoluteString, resolved.absoluteString);
 
     
     NSMutableURLRequest *req = [[NSMutableURLRequest alloc] initWithURL:resolved];
@@ -125,12 +125,12 @@ static NSString* const kStagingHost = @"darts.streakit-staging.preplaysports.com
 shouldStartLoadWithRequest:(NSURLRequest *)request
  navigationType:(UIWebViewNavigationType)navigationType {
     NSLog(@"fn=shouldStartLoadWithRequest url=%@", request.URL);
-    NSString *scheme = [[request URL] scheme];
+    NSString *scheme = request.URL.scheme;
     if ([@"streaksdk" isEqualToString:scheme]) {
-        NSString *action = [[[request URL] host] stringByReplacingOccurrencesOfString:@".it" withString:@""];
+        NSString *action = [request.URL.host stringByReplacingOccurrencesOfString:@".it" withString:@""];
         
         NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-        for (NSString *param in [[[request URL] query] componentsSeparatedByString:@"&"]) {
+        for (NSString *param in [request.URL.query componentsSeparatedByString:@"&"]) {
             NSArray *elts = [param componentsSeparatedByString:@"="];
             if([elts count] < 2) continue;
             NSString *name = [elts objectAtIndex:0];
