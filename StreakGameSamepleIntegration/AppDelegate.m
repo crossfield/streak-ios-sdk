@@ -46,7 +46,7 @@
 
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url
  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    NSLog(@"ns=AppDelegate fn=openURL url=%@", [url description]);
+    NSLog(@"ns=AppDelegate fn=openURL url=%@", url);
     if ([@"streak-darts" isEqualToString:[url scheme]]) {
         UITabBarController *tabBar = (UITabBarController *)self.window.rootViewController;
         SecondViewController *streakController = (SecondViewController *)[[tabBar viewControllers] objectAtIndex:1];

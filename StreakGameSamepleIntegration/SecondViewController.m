@@ -91,7 +91,7 @@ static const NSString *staging = @"darts.streakit-staging.preplaysports.com";
 }
 
 - (void)navigateTo:(NSURL*)url {
-    NSLog(@"fn=navigateTo url=%@", [url description]);
+    NSLog(@"fn=navigateTo url=%@", url);
     if (self.isViewLoaded) {
         [self navigateToStreakapp:url];
     }
@@ -116,7 +116,7 @@ static const NSString *staging = @"darts.streakit-staging.preplaysports.com";
 - (BOOL)webView:(UIWebView *)webView
 shouldStartLoadWithRequest:(NSURLRequest *)request
  navigationType:(UIWebViewNavigationType)navigationType {
-    NSLog(@"fn=shouldStartLoadWithRequest url=%@", [request.URL description]);
+    NSLog(@"fn=shouldStartLoadWithRequest url=%@", request.URL);
     NSString *scheme = [[request URL] scheme];
     if ([@"streaksdk" isEqualToString:scheme]) {
         NSString *action = [[[request URL] host] stringByReplacingOccurrencesOfString:@".it" withString:@""];
@@ -157,7 +157,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    NSLog(@"fn=didFailLoadWithError error=%@", [error description]);
+    NSLog(@"fn=didFailLoadWithError error=%@", error);
     if (self.initialLoad) {
         [self showLocalContent:@"error"];
         self.initialLoad = false;
