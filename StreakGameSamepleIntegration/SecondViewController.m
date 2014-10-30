@@ -132,7 +132,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
         for (NSString *param in [request.URL.query componentsSeparatedByString:@"&"]) {
             NSArray *elts = [param componentsSeparatedByString:@"="];
-            if([elts count] < 2) continue;
+            if ([elts count] < 2) continue;
             NSString *name = elts[0];
             NSString *value = elts[1];
             value = [value stringByReplacingOccurrencesOfString:@"+" withString:@" "];
@@ -173,7 +173,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     }
 }
 
-- (BOOL) isOnLocalScreen {
+- (BOOL)isOnLocalScreen {
     NSURL* url = self.webview.request.mainDocumentURL;
     if (url) {
         return [url.host isEqualToString:@"localhost"];
