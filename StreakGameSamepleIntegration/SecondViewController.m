@@ -8,10 +8,10 @@
 
 #import "SecondViewController.h"
 
-static NSString* const urlScheme = @"streak-darts";
-static NSString* const host = @"darts.streakit.preplaysports.com";
-static NSString* const staging = @"darts.streakit-staging.preplaysports.com";
-//static const NSString *host = @"http://knicks.192.168.1.32.xip.io:9292";
+static NSString* const kURLScheme = @"streak-darts";
+static NSString* const kHost = @"darts.streakit.preplaysports.com";
+static NSString* const kStagingHost = @"darts.streakit-staging.preplaysports.com";
+//static NSString* const kHost = @"http://knicks.192.168.1.32.xip.io:9292";
 
 @interface SecondViewController ()
 
@@ -62,8 +62,8 @@ static NSString* const staging = @"darts.streakit-staging.preplaysports.com";
     NSURL *requested = url ?: self.nextUrlToLoad;
     NSURL *resolved;
     
-    if ([[requested scheme] isEqualToString:(NSString*)urlScheme]) {
-        NSString *curHost = [requested.host isEqualToString:@"staging"] ? (NSString *)staging : (NSString *)host;
+    if ([[requested scheme] isEqualToString:(NSString*)kURLScheme]) {
+        NSString *curHost = [requested.host isEqualToString:@"staging"] ? (NSString *)kStagingHost : (NSString *)kHost;
         NSString *path = [requested path];
         if ([requested.path isEqualToString:@""] && ![requested.host isEqualToString:@"staging"]) {
             path = [@"/" stringByAppendingString:requested.host];
@@ -71,7 +71,7 @@ static NSString* const staging = @"darts.streakit-staging.preplaysports.com";
         resolved = [[NSURL alloc] initWithScheme:@"http" host:curHost path:path];
     } else {
         // No deep-linking
-        resolved = [[NSURL alloc] initWithScheme:@"http" host:(NSString *)host path:@"/"];
+        resolved = [[NSURL alloc] initWithScheme:@"http" host:(NSString *)kHost path:@"/"];
     }
     
     NSLog(@"fn=navigateToStreakapp(%@) nextUrlToLoad=%@ resolved=%@", url, [self.nextUrlToLoad absoluteString], [resolved absoluteString]);
