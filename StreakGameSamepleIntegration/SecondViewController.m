@@ -8,9 +8,9 @@
 
 #import "SecondViewController.h"
 
-static const NSString *urlScheme = @"streak-darts";
-static const NSString *host = @"darts.streakit.preplaysports.com";
-static const NSString *staging = @"darts.streakit-staging.preplaysports.com";
+static NSString* const urlScheme = @"streak-darts";
+static NSString* const host = @"darts.streakit.preplaysports.com";
+static NSString* const staging = @"darts.streakit-staging.preplaysports.com";
 //static const NSString *host = @"http://knicks.192.168.1.32.xip.io:9292";
 
 @interface SecondViewController ()
