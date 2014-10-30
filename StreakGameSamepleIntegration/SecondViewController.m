@@ -62,7 +62,7 @@ static NSString* const kStagingHost = @"darts.streakit-staging.preplaysports.com
     NSURL *requested = url ?: self.nextURLToLoad;
     NSURL *resolved;
     
-    if ([[requested scheme] isEqualToString:(NSString*)kURLScheme]) {
+    if ([[requested scheme] isEqualToString:kURLScheme]) {
         NSString *curHost = [requested.host isEqualToString:@"staging"] ? kStagingHost : kHost;
         NSString *path = [requested path];
         if ([requested.path isEqualToString:@""] && ![requested.host isEqualToString:@"staging"]) {
