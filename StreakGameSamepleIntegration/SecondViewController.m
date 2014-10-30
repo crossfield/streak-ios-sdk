@@ -102,7 +102,16 @@ static NSString* const kStagingHost = @"darts.streakit-staging.preplaysports.com
 
 
 - (void)shareWithURL:(NSURL *)url andCopy:(NSString *)copy {
-    NSArray *sharingItems = @[url, copy];
+    if (!url) {
+        NSLog(@"[Streak] Cannot share nil url");
+        return;
+    }
+
+    NSMutableArray *sharingItems = @[url].mutableCopy;
+
+    if (copy) {
+        [sharingItems addObject:copy];
+    }
 
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:sharingItems applicationActivities:nil];
     activityController.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePrint, UIActivityTypeMail, UIActivityTypeMessage,
