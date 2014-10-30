@@ -63,7 +63,7 @@ static NSString* const kStagingHost = @"darts.streakit-staging.preplaysports.com
     NSURL *resolved;
     
     if ([[requested scheme] isEqualToString:(NSString*)kURLScheme]) {
-        NSString *curHost = [requested.host isEqualToString:@"staging"] ? (NSString *)kStagingHost : (NSString *)kHost;
+        NSString *curHost = [requested.host isEqualToString:@"staging"] ? kStagingHost : kHost;
         NSString *path = [requested path];
         if ([requested.path isEqualToString:@""] && ![requested.host isEqualToString:@"staging"]) {
             path = [@"/" stringByAppendingString:requested.host];
@@ -71,7 +71,7 @@ static NSString* const kStagingHost = @"darts.streakit-staging.preplaysports.com
         resolved = [[NSURL alloc] initWithScheme:@"http" host:curHost path:path];
     } else {
         // No deep-linking
-        resolved = [[NSURL alloc] initWithScheme:@"http" host:(NSString *)kHost path:@"/"];
+        resolved = [[NSURL alloc] initWithScheme:@"http" host:kHost path:@"/"];
     }
     
     NSLog(@"fn=navigateToStreakapp(%@) nextUrlToLoad=%@ resolved=%@", url, [self.nextUrlToLoad absoluteString], [resolved absoluteString]);
